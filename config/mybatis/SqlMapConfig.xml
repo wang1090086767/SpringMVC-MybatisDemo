@@ -14,14 +14,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 </settings>
 <typeAliases>
-<package name="cn.example.po"/>
+<package name="cn.example.ssm.po"/>
 </typeAliases>
 
 	
-	<!-- 加载 映射文件 -->
-	<mappers>
-	<mapper resource="sqlmap/User.xml"/>
-
-	
-	</mappers>
+	<!-- 由于使用mybatis和spring的整合进行了mapper扫描，这里就不需要配置了。
+	必须遵循mapper.xml和mapper.java 同名且在同一目录 -->
+	<!-- <mappers>	
+	</mappers> -->
 </configuration>
