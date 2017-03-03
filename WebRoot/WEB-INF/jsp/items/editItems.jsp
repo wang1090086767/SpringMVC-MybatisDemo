@@ -10,7 +10,7 @@
 
 </head>
 <body> 
-<form id="itemForm" action="${pageContext.request.contextPath}/editItemsSubmit.action" method="post" enctype="multipart/form-data">
+<form id="itemForm" action="${pageContext.request.contextPath}/items/editItemsSubmit.action" method="post" >
 <input type="hidden" name="id" value="${itemsCustom.id }"/>
 修改商品信息：
 <table width="100%" border=1>
@@ -22,7 +22,7 @@
 	<td>商品价格</td>
 	<td><input type="text" name="price" value="${itemsCustom.price }"/></td>
 </tr>
-<tr>
+ <tr>
 	<td>商品生产日期</td>
 	<td><input type="text" name="createtime" value="<fmt:formatDate value="${itemsCustom.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/></td>
 </tr>

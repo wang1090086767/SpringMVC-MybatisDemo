@@ -26,7 +26,7 @@
 		<tx:advice id="txadvice" transaction-manager="transactionManager">
 		
 		<tx:attributes>
-		<!-- 传播行为 -->
+		<!-- 限制传播行为 -->
 		<tx:method name="save" propagation="REQUIRED"/>
 		<tx:method name="insert" propagation="REQUIRED"/>
 		<tx:method name="delete" propagation="REQUIRED"/>
@@ -34,7 +34,6 @@
 		<tx:method name="find" propagation="SUPPORTS" read-only="true"/>
 		<tx:method name="get" propagation="SUPPORTS" read-only="true"/>
 		<tx:method name="select" propagation="SUPPORTS" read-only="true"/>
-		
 		</tx:attributes>
 		
 		</tx:advice>
