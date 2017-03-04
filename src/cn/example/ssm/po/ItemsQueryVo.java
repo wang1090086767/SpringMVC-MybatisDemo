@@ -7,6 +7,14 @@ package cn.example.ssm.po;
 description：
 */
 public class ItemsQueryVo {
+	private Items items;
+	public Items getItems() {
+		return items;
+	}
+
+	public void setItems(Items items) {
+		this.items = items;
+	}
 
 	private ItemsCustom itemsCustom;
 

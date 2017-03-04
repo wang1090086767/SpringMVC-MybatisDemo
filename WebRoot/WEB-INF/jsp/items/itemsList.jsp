@@ -13,6 +13,12 @@
 查询条件：
 <table width="100%" border=1>
 <tr>
+<!-- 页面参数 
+商品名称 <input type="text" name="itemsCustom.name"/>
+注意 itemsCustom和包装pojo的中属性一致即可
+-->
+
+<td><input type="text" name="itemsCustom.name"/></td>
 <td><input type="submit" value="查询"/></td>
 </tr>
 </table>

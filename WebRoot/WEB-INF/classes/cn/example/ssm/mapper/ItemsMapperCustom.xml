@@ -7,7 +7,7 @@
 <!--使用动态sql，通过if判断，满足条件进行sql穿插  -->
 <!--商品查询通过ItemsQueryVo包装对象中ItemsCustom属性传递  -->
 <if test="itemsCustom!=null">
-	<if test="itemsCustom.name!=null and items.name!=''">
+	<if test="itemsCustom.name!=null and itemsCustom.name!=''">
 	items.name like '%${itemsCustom.name}%'
 	</if>
 </if>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.example.ssm.po.ItemsCustom;
+import cn.example.ssm.po.ItemsQueryVo;
 import cn.example.ssm.service.ItemsService;
 
 /**
@@ -53,10 +54,11 @@ public class ItemsCotroller  {
 //				return modelAndView;	
 //	}
 //	//商品查询
+	//使用包装的pojo来接收参数
 	@RequestMapping(value="queryItems",method={RequestMethod.GET,RequestMethod.POST})
-	public String  queryItems(Model model)throws Exception{
+	public String  queryItems(Model model,HttpServletRequest request,ItemsQueryVo itemsQueryVo)throws Exception{
 	//调用Service查找数据库，查询商品列表
-		List<ItemsCustom> itemsList= itemsService.findItemsList(null);
+		List<ItemsCustom> itemsList= itemsService.findItemsList(itemsQueryVo);
 		//通过形参中的model将model数据传到页面
 		//相当于modelAndeView.addObjcet方法
 		model.addAttribute("itemsList",itemsList);
