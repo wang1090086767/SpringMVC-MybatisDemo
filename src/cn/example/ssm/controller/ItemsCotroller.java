@@ -108,6 +108,15 @@ public class ItemsCotroller  {
 	return "forward:queryItems.action";
 	}
 	
+	//批量删除商品
+	@RequestMapping("/deleteItems")
+	public String deleteItems(Integer[] items_Id)throws Exception{
+		//删除商品
+		itemsService.deleteItems(items_Id);
+		
+		return "forward:queryItems.action";
+	}
+	
 
 	
 

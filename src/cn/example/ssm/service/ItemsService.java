@@ -44,6 +44,14 @@ public interface ItemsService {
 	 *@throws Exception
 	 */
 	public void updateItems(Integer id,ItemsCustom itemsCustom) throws Exception;
+	/**
+	 * Title-->deleteItems
+	 *2017年3月4日下午9:01:20
+	 *description：根据Id删除商品
+	 *@param items_Id
+	 *@throws Exception
+	 */
+	public void deleteItems(Integer[] items_Id)throws Exception;
 	
 
 }

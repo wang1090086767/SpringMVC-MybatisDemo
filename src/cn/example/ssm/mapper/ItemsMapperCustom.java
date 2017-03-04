@@ -15,6 +15,7 @@ description：查询商品列表
 public interface ItemsMapperCustom {
 	//商品查询列表
 	public List<ItemsCustom> findItemsList(ItemsQueryVo itemsQueryVo) throws Exception;
-
+	//删除商品信息
+	public void deleteItems(Integer[] items_Id) throws Exception;
 }
 
