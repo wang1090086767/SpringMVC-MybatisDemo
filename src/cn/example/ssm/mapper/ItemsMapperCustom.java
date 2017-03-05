@@ -17,5 +17,13 @@ public interface ItemsMapperCustom {
 	public List<ItemsCustom> findItemsList(ItemsQueryVo itemsQueryVo) throws Exception;
 	//删除商品信息
 	public void deleteItems(Integer[] items_Id) throws Exception;
+	/**
+	 * Title-->updateAllItems
+	 *2017年3月5日上午10:40:46
+	 *description：批量修改商品信息
+	 *@param itemsQueryVo
+	 *@throws Exception
+	 */
+	public void updateAllItems(ItemsQueryVo itemsQueryVo)throws Exception;
 }
 

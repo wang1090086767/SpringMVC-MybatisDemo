@@ -117,6 +117,33 @@ public class ItemsCotroller  {
 		return "forward:queryItems.action";
 	}
 	
+	//查询到商品的批量信息
+	@RequestMapping("editItemsQuery")
+	public String editItemsQuery(Model model,ItemsQueryVo itemsQueryVo)throws Exception{
+		
+		//调用Service查找数据库，查询商品列表
+				List<ItemsCustom> itemsList= itemsService.findItemsList(itemsQueryVo);
+				
+				//通过形参中的model将model数据传到页面
+				
+				//相当于modelAndeView.addObjcet方法
+				model.addAttribute("itemsList",itemsList);
+				
+		return "items/editItemsList";
+	}
+	//批量修改商品提交
+	//通过ItemsQueryVo接收批量提交的商品，将商品信息存储到itemsQueryVo中itemsList属性中
+	@RequestMapping("editItemsAllSubmit")
+	public String editItemsAllSubmit(ItemsQueryVo itemsQueryVo)throws Exception{
+		
+		//得到批量修改后的商品信息
+		//。。。。。
+		//修改到数据库
+		itemsService.updateAllItems(itemsQueryVo);
+		
+		return "success";
+	}
+	
 
 	
 

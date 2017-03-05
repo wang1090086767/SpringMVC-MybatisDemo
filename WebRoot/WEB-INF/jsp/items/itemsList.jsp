@@ -18,6 +18,10 @@ function deleteItems(){
 	document.itemsFrom.action="${pageContext.request.contextPath }/items/deleteItems.action";
 	document.itemsFrom.submit();
 }
+function editItemsQuery(){
+	document.itemsFrom.action="${pageContext.request.contextPath }/items/editItemsQuery.action";
+	document.itemsFrom.submit();
+}
 
 
 </script>
@@ -35,6 +39,7 @@ function deleteItems(){
 <td><input type="text" name="itemsCustom.name"/></td>
 <td><input type="submit" value="查询" onclick="queryItems()"/></td>
 <td><input type="button" value="批量删除" onclick="deleteItems()"/>
+<td><input type="button" value="批量修改" onclick="editItemsQuery()"/>
 </td>
 </tr>
 </table>

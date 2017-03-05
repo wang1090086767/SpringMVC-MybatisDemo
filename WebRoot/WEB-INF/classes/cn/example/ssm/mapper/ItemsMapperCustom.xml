@@ -46,6 +46,40 @@ DELETE FROM items
 </if>
 
 </delete>
+<!-- 批量修改商品信息 -->
+<update id="updateAllItems" parameterType="cn.example.ssm.po.ItemsQueryVo">
+<if test="itemsList!=null">
+UPDATE items 
+<set>
+name = case id
+<foreach collection="itemsList" index="i" close="END," >
+when #{itemsList[${i}].id} then  #{itemsList[${i}].name}
+</foreach>
+price = case id
+<foreach collection="itemsList" index="i" close="END," >
+when #{itemsList[${i}].id} then  #{itemsList[${i}].price}
+</foreach>
+detail = case id
+<foreach collection="itemsList" index="i" close="END," >
+when #{itemsList[${i}].id} then  #{itemsList[${i}].detail}
+</foreach>
+pic = case id
+<foreach collection="itemsList" index="i" close="END," >
+when #{itemsList[${i}].id} then  #{itemsList[${i}].pic}
+</foreach>
+createtime = case id
+<foreach collection="itemsList" index="i" close="END," >
+when #{itemsList[${i}].id} then  #{itemsList[${i}].createtime}
+</foreach>
+</set>
+WHERE id IN
+<foreach collection="itemsList" index="i" open="(" close=")" separator=",">
+#{itemsList[${i}].id}
+</foreach>
+</if>
 
+
+
+</update>
 
 </mapper>

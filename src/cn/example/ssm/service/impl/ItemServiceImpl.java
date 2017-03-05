@@ -60,7 +60,15 @@ public class ItemServiceImpl implements ItemsService {
 		
 		//通过id删除商品信息
 		itemsMapperCustom.deleteItems(items_Id);
+		
 
+		
+	}
+	//批量修改商品信息
+	@Override
+	public void updateAllItems(ItemsQueryVo itemsQueryVo) throws Exception {
+		//批量更改商品信息
+		itemsMapperCustom.updateAllItems(itemsQueryVo);
 		
 	}
 }

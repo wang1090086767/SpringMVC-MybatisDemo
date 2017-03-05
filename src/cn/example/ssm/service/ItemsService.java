@@ -52,7 +52,14 @@ public interface ItemsService {
 	 *@throws Exception
 	 */
 	public void deleteItems(Integer[] items_Id)throws Exception;
-	
+	/**
+	 * Title-->updateAllItems
+	 *2017年3月5日上午10:38:57
+	 *description：批量修改商品的信息
+	 *@param itemsQueryVo
+	 *@throws Exception
+	 */
+	public void updateAllItems(ItemsQueryVo itemsQueryVo)throws Exception;
 
 }
 
