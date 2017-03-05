@@ -41,7 +41,6 @@ function editItemsAllSubmit(){
 商品列表：
 <table width="100%" border=1>
 <tr>
-	<td>商品ID</td>
 	<td>商品名称</td>
 	<td>商品价格</td>
 	<td>生产日期</td>
@@ -50,8 +49,10 @@ function editItemsAllSubmit(){
 </tr>
 <!-- 使用list的数据绑定需要与list里的pojo里面的属性一致 -->
 <c:forEach items="${itemsList}" var="item" varStatus="status">
+<!--商品id-->
+<input type="hidden" name="itemsList[${status.index }].id" value="${item.id} "/>
 <tr>
-	<td><input type="text" name="itemsList[${status.index }].id" value="${item.id} " disabled="disabled"/></td>
+
 	<td><input type="text" name="itemsList[${status.index }].name" value="${item.name} "/></td>
 	<td><input type="text" name="itemsList[${status.index }].price" value="${item.price} "/></td>
 	<td><input type="text" name="itemsList[${status.index }].createtime" value="<fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/> "/></td>

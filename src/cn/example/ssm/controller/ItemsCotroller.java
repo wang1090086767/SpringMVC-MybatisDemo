@@ -141,7 +141,7 @@ public class ItemsCotroller  {
 		//修改到数据库
 		itemsService.updateAllItems(itemsQueryVo);
 		
-		return "success";
+		return "forward:queryItems.action";
 	}
 	
 
