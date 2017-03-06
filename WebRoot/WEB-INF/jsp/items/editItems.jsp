@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
@@ -10,6 +11,16 @@
 
 </head>
 <body> 
+<c:if test="${allError!=null}">
+<font color="red">
+错误信息：
+<br>
+<c:forEach items="${allError}" var="error" >
+${error.defaultMessage}
+<br>
+</c:forEach>
+</font>
+</c:if>
 <form id="itemForm" action="${pageContext.request.contextPath}/items/editItemsSubmit.action" method="post" >
 <input type="hidden" name="id" value="${itemsCustom.id }"/>
 修改商品信息：

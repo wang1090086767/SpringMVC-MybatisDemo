@@ -20,8 +20,11 @@
 	<!--注解适配器 -->
 	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHan 
 		dlerAdapter"/> -->
-	<!-- 使用 mvc:annotation-driven标签可以代替上面注解映射器和注解适配器的配置 比如json解析器就默认加载了 -->
-	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+	<!-- 使用 mvc:annotation-driven标签可以代替上面注解映射器和注解适配器的配置 比如json解析器就默认加载了
+	注入转化器conversion
+	注入校验器 validator
+	 -->
+	<mvc:annotation-driven validator="validator" conversion-service="conversionService"></mvc:annotation-driven>
 	<!-- 自定义参数的绑定 -->
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -32,6 +35,32 @@
 				<bean class="cn.example.ssm.converter.CustomDateConverter" />
 			</list>
 		</property>
+	</bean>
+	<!-- 校验器 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<!-- hibernate校验器 -->
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator">
+		</property>
+		<!-- 指定校验使用的资源文件，在文件中配置校验错误信息，如不指认则默认使用classpath下的ValidationMessages.properties -->
+		<property name="validationMessageSource" ref="messageSource"></property>
+	</bean>
+	<!-- 校验错误信息配置文件 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- 资源文件名 -->
+		<property name="basenames">
+			<list>
+				<value>
+					classpath:CustomValidationMessages
+				</value>
+			</list>
+		</property>
+		<!--资源文件编码格式  -->
+		<property name="fileEncodings" value="utf-8"></property>
+		<property name="defaultEncoding" value="utf-8"></property>
+		<!--对资源文件内容缓存时间，单位秒  -->
+		<property name="cacheSeconds" value="120"></property>
 	</bean>
 
 	<!--配置视图解析器 -->
