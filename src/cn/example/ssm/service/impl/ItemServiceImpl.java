@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.example.ssm.exception.CustomException;
 import cn.example.ssm.mapper.ItemsMapper;
 import cn.example.ssm.mapper.ItemsMapperCustom;
 import cn.example.ssm.po.Items;
@@ -38,9 +39,16 @@ public class ItemServiceImpl implements ItemsService {
 		// 中间对商品信息进行业务处理
 		// 。。。。。。
 		// 返回ItemsCustom
-		ItemsCustom itemsCustom = new ItemsCustom();
-		// spring提供的拷贝属性
-		BeanUtils.copyProperties(items, itemsCustom);
+		ItemsCustom itemsCustom = null;
+
+	//判断商品是否存在
+		if (items != null) {
+			itemsCustom = new ItemsCustom();
+			// spring提供的拷贝属性
+			BeanUtils.copyProperties(items, itemsCustom);
+		}else{
+			throw new CustomException("商品不存在！");
+		}
 		return itemsCustom;
 	}
 
@@ -49,26 +57,29 @@ public class ItemServiceImpl implements ItemsService {
 	public void updateItems(Integer id, ItemsCustom itemsCustom) throws Exception {
 		// 添加业务校验，通常在Service接口对关键的参数进行校验
 		// 校验id是否为空，为空则抛出异常
-		itemsCustom.setId(id);
-		// 更新商品信息使用updateByPrimaryKeyWithBLOBs根据id更新items表中所有字段，包括大文本类型字段
-		itemsMapper.updateByPrimaryKeyWithBLOBs(itemsCustom);
+		if (id != null) {
+			itemsCustom.setId(id);
+			// 更新商品信息使用updateByPrimaryKeyWithBLOBs根据id更新items表中所有字段，包括大文本类型字段
+			itemsMapper.updateByPrimaryKeyWithBLOBs(itemsCustom);
+		}
 	}
-	
-	//删除商品信息
+
+	// 删除商品信息
 	@Override
 	public void deleteItems(Integer[] items_Id) throws Exception {
-		
-		//通过id删除商品信息
+		//判断是否有id
+		if(items_Id!=null){
+		// 通过id删除商品信息
 		itemsMapperCustom.deleteItems(items_Id);
-		
+		}
 
-		
 	}
-	//批量修改商品信息
+
+	// 批量修改商品信息
 	@Override
 	public void updateAllItems(ItemsQueryVo itemsQueryVo) throws Exception {
-		//批量更改商品信息
+		// 批量更改商品信息
 		itemsMapperCustom.updateAllItems(itemsQueryVo);
-		
+
 	}
 }

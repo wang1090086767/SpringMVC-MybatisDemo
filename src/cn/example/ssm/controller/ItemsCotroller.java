@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -98,7 +99,7 @@ public class ItemsCotroller {
 	//value={validGroup1.class}指定使用ValidGroup1的分组校验
 	@RequestMapping("/editItemsSubmit")
 	public String editItemsSubmit(Model model, HttpServletRequest request,
-			@RequestParam(value = "id", required = true) Integer id, @Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,
+			@RequestParam(value = "id", required = true) Integer id, @ModelAttribute("itemsCustom")@Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,
 			BindingResult bindingResult) throws Exception {
 
 		// 获取错误校验信息
@@ -111,7 +112,7 @@ public class ItemsCotroller {
 			}
 			// 将错误信息显示到页面上
 			model.addAttribute("allError", allError);
-			
+		
 			return "items/editItems";
 
 		}
