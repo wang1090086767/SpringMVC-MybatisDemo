@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.example.ssm.po.ItemsCustom;
 import cn.example.ssm.po.ItemsQueryVo;
 import cn.example.ssm.service.ItemsService;
+import cn.example.ssm.validategroup.ValidGroup1;
 
 /**
  * 类名：ItemsCotroller2.java 创建人-->Wang JJ 创建时间：2017年3月1日下午9:22:28
@@ -94,9 +95,10 @@ public class ItemsCotroller {
 
 	// 商品信息修改提交
 	// 使用校验器必须在需要校验的pojo参数前面加Validated,在形参中还得加bingResult，这两个成对存在，缺一不可
+	//value={validGroup1.class}指定使用ValidGroup1的分组校验
 	@RequestMapping("/editItemsSubmit")
 	public String editItemsSubmit(Model model, HttpServletRequest request,
-			@RequestParam(value = "id", required = true) Integer id, @Validated ItemsCustom itemsCustom,
+			@RequestParam(value = "id", required = true) Integer id, @Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,
 			BindingResult bindingResult) throws Exception {
 
 		// 获取错误校验信息
