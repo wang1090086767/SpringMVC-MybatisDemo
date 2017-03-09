@@ -26,7 +26,7 @@ public class LoginController {
 		//在session中保存用户身份信息
 		session.setAttribute("username", username);
 		//重定向到商品页面
-		return "redirect:/items/queryItems";
+		return "redirect:/items/queryItems.action";
 	}
 	//退出
 	@RequestMapping("/logout")
@@ -36,7 +36,7 @@ public class LoginController {
 		session.invalidate();
 		
 		//重定向到商品界面
-		return "redirect:/items/queryItems";
+		return "redirect:/items/queryItems.action";
 	}
 	
 

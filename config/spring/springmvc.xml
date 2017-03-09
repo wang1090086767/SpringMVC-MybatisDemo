@@ -20,11 +20,10 @@
 	<!--注解适配器 -->
 	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHan 
 		dlerAdapter"/> -->
-	<!-- 使用 mvc:annotation-driven标签可以代替上面注解映射器和注解适配器的配置 比如json解析器就默认加载了
-	注入转化器conversion
-	注入校验器 validator
-	 -->
-	<mvc:annotation-driven validator="validator" conversion-service="conversionService"></mvc:annotation-driven>
+	<!-- 使用 mvc:annotation-driven标签可以代替上面注解映射器和注解适配器的配置 比如json解析器就默认加载了 注入转化器conversion 
+		注入校验器 validator -->
+	<mvc:annotation-driven validator="validator"
+		conversion-service="conversionService"></mvc:annotation-driven>
 	<!-- 自定义参数的绑定 -->
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -56,10 +55,10 @@
 				</value>
 			</list>
 		</property>
-		<!--资源文件编码格式  -->
+		<!--资源文件编码格式 -->
 		<property name="fileEncodings" value="utf-8"></property>
 		<property name="defaultEncoding" value="utf-8"></property>
-		<!--对资源文件内容缓存时间，单位秒  -->
+		<!--对资源文件内容缓存时间，单位秒 -->
 		<property name="cacheSeconds" value="120"></property>
 	</bean>
 
@@ -71,7 +70,16 @@
 		<!-- 配置jsp路径的后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<!--全局异常处理器
-	只要实现HandlerExceptionResolver接口就是全局异常处理器  -->
+	<!--全局异常处理器 只要实现HandlerExceptionResolver接口就是全局异常处理器 -->
 	<bean class="cn.example.ssm.exception.CustomExceptionResolver"></bean>
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<!-- 配置多个拦截器 /**表示所有的根路径和子路径 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="cn.example.ssm.interceptor.LoginInterceptor">
+			</bean>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
 </beans>

@@ -27,6 +27,7 @@ function editItemsQuery(){
 </script>
 </head>
 <body> 
+user-->${username}<a href="${pageContext.request.contextPath }/logout"></a>
 <form name="itemsFrom" action="${pageContext.request.contextPath }/items/queryItems.action" method="post">
 查询条件：
 <table width="100%" border=1>
