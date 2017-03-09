@@ -19,7 +19,19 @@
 	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/> -->
 	<!--注解适配器 -->
 	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHan 
-		dlerAdapter"/> -->
+		dlerAdapter">
+		
+		<property name="messageConverters">
+		<list>
+		配置json转换器
+		<bean
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"
+		>
+		</bean>
+		</list>
+		</property>
+		
+		</bean> -->
 	<!-- 使用 mvc:annotation-driven标签可以代替上面注解映射器和注解适配器的配置 比如json解析器就默认加载了
 	注入转化器conversion
 	注入校验器 validator
@@ -70,5 +82,14 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<!-- 配置jsp路径的后缀 -->
 		<property name="suffix" value=".jsp" />
+	</bean>
+	<!--文件上传 -->
+	<bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+	>
+	<!--设置上传文件的最大尺寸为5MB  -->
+	<property name="maxUploadSize">
+	<value>5242880</value>
+	</property>
 	</bean>
 </beans>

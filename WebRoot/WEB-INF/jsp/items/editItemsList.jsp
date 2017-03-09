@@ -13,6 +13,7 @@ function queryItems(){
 	//提交form
 	document.itemsFrom.action="${pageContext.request.contextPath }/items/queryItems.action";
 	document.itemsFrom.submit();	
+	
 }
 function editItemsAllSubmit(){
 	document.itemsFrom.action="${pageContext.request.contextPath }/items/editItemsAllSubmit.action";

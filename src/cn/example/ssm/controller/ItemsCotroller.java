@@ -1,7 +1,9 @@
 
 package cn.example.ssm.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import cn.example.ssm.po.ItemsCustom;
 import cn.example.ssm.po.ItemsQueryVo;
@@ -99,7 +102,7 @@ public class ItemsCotroller {
 	@RequestMapping("/editItemsSubmit")
 	public String editItemsSubmit(Model model, HttpServletRequest request,
 			@RequestParam(value = "id", required = true) Integer id, @Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult,MultipartFile items_pic) throws Exception {
 
 		// 获取错误校验信息
 		if (bindingResult.hasErrors()) {
@@ -115,13 +118,32 @@ public class ItemsCotroller {
 			return "items/editItems";
 
 		}
+		//原始名称
+		String originalFileName = items_pic.getOriginalFilename();
+		//上传图片
+		if(items_pic!=null && originalFileName!=null &&originalFileName.length()>0){
+			
+			//存储图片的物理路径
+			String pic_path = "E:\\javaee\\workspace\\SpringMVC-Mybatis\\temp\\";
+			//新的图片名称
+			String newFileName = UUID.randomUUID()+originalFileName.substring(originalFileName.lastIndexOf("."));
+			//新图片
+			File newfile = new File(pic_path+newFileName);
+			//将新图片名称写到itemsCustom中
+			itemsCustom.setPic(newFileName);
+			
+			//将内存中的属性写入磁盘
+			items_pic.transferTo(newfile);
+		}
+		
 			// 调用service更新商品信息，页面需要将商品信息传到此方法
 			itemsService.updateItems(id, itemsCustom);
 
 			// 重定向，地址栏改变
 			// return "redirect:queryItems.action";
 			// 页面转发，地址栏的url不变
-			return "forward:queryItems.action";
+			
+			return "success";
 	
 	}
 
