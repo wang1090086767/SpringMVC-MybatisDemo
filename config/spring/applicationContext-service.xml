@@ -14,8 +14,12 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 		
+<!--=============================================================================  --> 
+		
 		<!--商品管理的Servive  -->
 		<bean id="itemsService" class="cn.example.ssm.service.impl.ItemServiceImpl"/>
+		
+<!--=============================================================================  --> 
 		
 		
 </beans>

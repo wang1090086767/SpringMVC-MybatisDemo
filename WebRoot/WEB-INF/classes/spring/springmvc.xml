@@ -12,6 +12,9 @@
 		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+			
+<!--=============================================================================  --> 
+	
 	<!--可以扫描controller，service。。. 这里扫描指定的包 -->
 	<context:component-scan base-package="cn.example.ssm.controller">
 	</context:component-scan>
@@ -20,6 +23,9 @@
 	<!--注解适配器 -->
 	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHan 
 		dlerAdapter"/> -->
+			
+<!--=============================================================================  --> 
+	
 	<!-- 使用 mvc:annotation-driven标签可以代替上面注解映射器和注解适配器的配置 比如json解析器就默认加载了 注入转化器conversion 
 		注入校验器 validator -->
 	<mvc:annotation-driven validator="validator"
@@ -35,6 +41,9 @@
 			</list>
 		</property>
 	</bean>
+		
+<!--=============================================================================  --> 
+	
 	<!-- 校验器 -->
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
@@ -61,7 +70,9 @@
 		<!--对资源文件内容缓存时间，单位秒 -->
 		<property name="cacheSeconds" value="120"></property>
 	</bean>
-
+	
+<!--=============================================================================  --> 
+	
 	<!--配置视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -72,6 +83,9 @@
 	</bean>
 	<!--全局异常处理器 只要实现HandlerExceptionResolver接口就是全局异常处理器 -->
 	<bean class="cn.example.ssm.exception.CustomExceptionResolver"></bean>
+		
+<!--=============================================================================  --> 
+	
 	<!-- 配置拦截器 -->
 	<mvc:interceptors>
 		<!-- 配置多个拦截器 /**表示所有的根路径和子路径 -->
@@ -82,4 +96,13 @@
 		</mvc:interceptor>
 
 	</mvc:interceptors>
+		
+<!--=============================================================================  --> 
+	
+	<!-- 配置静态资源解析 -->
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/img/" mapping="/img/**"/>
+	
+<!--=============================================================================  --> 
+	
 </beans>
