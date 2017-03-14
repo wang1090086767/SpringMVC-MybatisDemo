@@ -8,7 +8,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改商品信息</title>
+<script type="text/javascript">
 
+
+	
+
+</script>
 </head>
 <body> 
 <c:if test="${allError!=null}">
@@ -21,7 +26,7 @@ ${error.defaultMessage}
 </c:forEach>
 </font>
 </c:if>
-<form id="itemForm" action="${pageContext.request.contextPath}/items/editItemsSubmit.action" method="post" >
+<form name="itemForm"  action="${pageContext.request.contextPath}/items/editItemsSubmit.action" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="id" value="${itemsCustom.id }"/>
 修改商品信息：
 <table width="100%" border=1>
@@ -44,7 +49,7 @@ ${error.defaultMessage}
 			<img src="/pic/${itemsCustom.pic}" width=100 height=100/>
 			<br/>
 		</c:if>
-		<input type="file"  name="pictureFile"/> 
+		<input type="file"  name="items_pic"/> 
 	</td>
 </tr>
 <tr>

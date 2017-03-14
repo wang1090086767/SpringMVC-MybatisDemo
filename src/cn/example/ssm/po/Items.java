@@ -3,9 +3,11 @@ package cn.example.ssm.po;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.format.annotation.NumberFormat;
 
 import cn.example.ssm.validategroup.ValidGroup1;
 
@@ -16,8 +18,8 @@ public class Items {
 //groups:此校验属于那个分组，groups可以定义多个分组
     @Size(min=1,max=30,message="{items.name.length.error}",groups={ValidGroup1.class})
     private String name;
+    
     private Float price;
-
     private String pic;
 //非空校验
     @NotNull(message="{items.createtime.createtime.isNull}",groups={ValidGroup1.class})
