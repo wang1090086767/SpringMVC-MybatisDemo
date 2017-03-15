@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.example.ssm.po.UserCustom;
@@ -39,19 +40,23 @@ public class LoginController {
 		UserLogin userLogin = new UserLogin();
 		userLogin.setLogin_name(login_name);
 		userLogin.setLogin_password(login_password);
-		//从数据库中查询用户名和密码
-		int record = userService.findUserByUsernamePassword(userLogin);
+		
+		//先根据用户名查询用户信息，如果没有则返回
 		int username_record = userService.findUserByUsername(userLogin);
 		if(username_record==0){
 			model.addAttribute("login_err","用户名不存在");
 			return "login";
 		}
+		//从数据库中查询用户名和密码
+		int record = userService.findUserByUsernamePassword(userLogin);
 		if(record==1){
 		//在session中保存用户身份信息
 		session.setAttribute("username", login_name);
 		//重定向到商品页面
 				return "redirect:/items/queryItems.action";
-		}else{
+		}
+		else{
+			//当没查询到用户信息返回
 			model.addAttribute("login_err","用户名或密码错误");
 			return "login";
 		}
@@ -71,7 +76,10 @@ public class LoginController {
 	//注册
 	@RequestMapping("/register")
 	public String register(Model model,HttpServletRequest request,@Validated(value={RegisterValidGroup.class}) UserVo userVo,BindingResult bindingResult)throws Exception{
-	
+		//当做跳转注册页面，没有参数时
+				if(userVo.getUserLogin()==null){
+				 return "register";
+				}
 		//打印错误信息
 		if(bindingResult.hasErrors()){
 			//得到错误信息的集合
@@ -82,18 +90,17 @@ public class LoginController {
 			return "register";
 		}
 		
-		//如果注册的信息为空
-		if(userVo.getUserLogin()==null){
-		 return "register";
-		}
+		
 		//查找用户名是否存在
 		int username_record = userService.findUserByUsername(userVo.getUserLogin());
+		//如果用户名已经存在则返回
 		if(username_record==1){
+			
 			model.addAttribute("register_err","用户名已存在");
 			return "register";
 		}
 		
-		//得到插入用户信息的影响行数
+		//没有用户信息则插入信息，则注册成功
 		 userService.insertUserAndUserLogin(userVo);	
 	  model.addAttribute("register_success","注册成功！");
 	   return "login";

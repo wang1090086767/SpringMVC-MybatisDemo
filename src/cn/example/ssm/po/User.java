@@ -2,13 +2,18 @@ package cn.example.ssm.po;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import cn.example.ssm.validategroup.RegisterValidGroup;
+
 public class User {
     private Integer id;
-
+    @NotEmpty(message="{user.username.isNull}",groups={RegisterValidGroup.class})
     private String username;
-
+    
     private Date birthday;
-
+   
     private String sex;
 
     private String address;

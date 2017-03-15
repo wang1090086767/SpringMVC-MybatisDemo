@@ -1,5 +1,8 @@
 
 package cn.example.ssm.po;
+
+import javax.validation.Valid;
+
 /**
 类名：UserVo.java
 创建人-->Wang JJ
@@ -7,13 +10,7 @@ package cn.example.ssm.po;
 description：包装pojo
 */
 public class UserVo {
-	private Integer id;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+@Valid
 	private UserCustom userCustom;
 	public UserCustom getUserCustom() {
 		return userCustom;
@@ -27,6 +24,7 @@ public class UserVo {
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
 	}
+	@Valid
 	private UserLogin userLogin;
 
 }

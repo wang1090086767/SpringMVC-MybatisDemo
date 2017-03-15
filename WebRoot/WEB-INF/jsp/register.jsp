@@ -22,8 +22,8 @@ password:<input type="text" name="userLogin.login_password"/><br>
 </c:if>
 <c:if test="${allError!=null}">
 错误信息：<br>
-<c:forEach var="error" items="${ allError}" >
- ${error.defaultMessage}
+<c:forEach var="error" items="${ allError}"  >
+ ${error.defaultMessage}<br>
 </c:forEach>
 </c:if>
 </font>

@@ -3,6 +3,8 @@ package cn.example.ssm.po;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import cn.example.ssm.validategroup.RegisterValidGroup;
 
 /**
@@ -13,9 +15,9 @@ description：登陆信息的pojo
 */
 public class UserLogin {
 	private Integer id;
-	@NotNull(message="{userLogin.login_name.isNull}",groups={RegisterValidGroup.class})
+	@NotEmpty(message="{userLogin.login_name.isNull}",groups={RegisterValidGroup.class})
 	private String login_name;
-	@NotNull(message="{userLogin.login_password.isNull}",groups={RegisterValidGroup.class})
+	@NotEmpty(message="{userLogin.login_password.isNull}",groups={RegisterValidGroup.class})
 	private String login_password;
 	public Integer getId() {
 		return id;
