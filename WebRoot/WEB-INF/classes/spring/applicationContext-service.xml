@@ -18,7 +18,8 @@
 		
 		<!--商品管理的Servive  -->
 		<bean id="itemsService" class="cn.example.ssm.service.impl.ItemServiceImpl"/>
-		
+		<!-- user信息的Service -->
+		<bean id="userService" class="cn.example.ssm.service.impl.UserServiceImpl"></bean>
 <!--=============================================================================  --> 
 		
 		

@@ -39,7 +39,11 @@
 	<!-- 使用 mvc:annotation-driven标签可以代替上面注解映射器和注解适配器的配置 比如json解析器就默认加载了 注入转化器conversion 
 		注入校验器 validator -->
 	<mvc:annotation-driven validator="validator"
-		conversion-service="conversionService"></mvc:annotation-driven>
+		conversion-service="conversionService">
+		</mvc:annotation-driven>
+		
+	<!-- ============================================================================== -->
+	
 	<!-- 自定义参数的绑定 -->
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -89,8 +93,8 @@
 	<!-- ====================================================================== -->
 
 	<!-- 静态资源解析 包括：js、css、img、。。。。。。 /**包括所有的根路径和子路径 -->
-	<mvc:resources location="/js/" mapping="/js/**" />
-	<mvc:resources location="/img/" mapping="/img/**" />
+	<!-- <mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/img/" mapping="/img/**" /> -->
 
 	<!-- ====================================================================== -->
 
@@ -119,11 +123,9 @@
 
 	</mvc:interceptors>
 		
-<!--=============================================================================  --> 
+ 
 	
-	<!-- 配置静态资源解析 -->
-	<mvc:resources location="/js/" mapping="/js/**"/>
-	<mvc:resources location="/img/" mapping="/img/**"/>
+	
 	
 <!--=============================================================================  --> 
 	
@@ -141,17 +143,6 @@
 	</bean>
 	<!-- ====================================================================== -->
 
-	<!-- 拦截器 -->
-	<mvc:interceptors>
-		<!--!多个拦截器，顺序执行 -->
-		<mvc:interceptor>
-			<!-- /**表示所有url包括子url路径 -->
-			<mvc:mapping path="/**" />
-			<bean class="cn.example.ssm.interceptor.HanderInterceptor1"></bean>
-		</mvc:interceptor>
-
-	</mvc:interceptors>
-
-	<!-- ====================================================================== -->
+	
 
 </beans>

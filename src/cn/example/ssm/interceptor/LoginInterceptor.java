@@ -40,7 +40,10 @@ public class LoginInterceptor implements  HandlerInterceptor{
 		if(url.indexOf("login.action")>=0){
 			//如果进行登陆提交，放行
 			return true;
-			
+		}
+		if(url.indexOf("register.action")>=0){
+			//如果进行登陆提交，放行
+			return true;
 		}
 		//判断session
 		HttpSession session = arg0.getSession();

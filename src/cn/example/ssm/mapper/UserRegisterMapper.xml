@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.example.ssm.mapper.UserRegisterMapper">
+
+	<!--插入用户的注册信息 -->
+	<insert id="insertUser" parameterType="cn.example.ssm.po.UserVo" >
+
+		<if test="userCustom!=null">
+
+			INSERT into user(
+			<if test="userCustom.username!=null">
+				username
+			</if>
+			<if test="userCustom.birthday!=null">
+				,birthday
+			</if>
+			<if test="userCustom.sex!=null">
+				,sex
+			</if>
+			<if test="userCustom.address!=null">
+				,address
+			</if>
+			)
+			values(
+			<if test="userCustom.username!=null">
+				#{userCustom.username}
+			</if>
+			<if test="userCustom.birthday!=null">
+				,#{userCustom.birthday}
+			</if>
+			<if test="userCustom.sex!=null">
+				,#{userCustom.sex}
+			</if>
+			<if test="userCustom.address!=null">
+				,#{userCustom.address}
+			</if>
+			);
+		</if>
+		<selectKey keyProperty="userLogin.id" order="AFTER" resultType="int">
+		Select LAST_INSERT_ID();
+		</selectKey>
+	</insert>
+	<insert id="insertUserLogin" parameterType="userLogin" >
+	<if test="userLogin.id!=null">
+	insert into user_login values(#{userLogin.id},#{userLogin.login_name},#{userLogin.login_password})
+	
+	</if>
+	
+	</insert>
+</mapper>

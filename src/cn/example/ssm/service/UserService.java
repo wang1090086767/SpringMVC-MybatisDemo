@@ -2,6 +2,8 @@
 package cn.example.ssm.service;
 
 import cn.example.ssm.po.UserCustom;
+import cn.example.ssm.po.UserLogin;
+import cn.example.ssm.po.UserVo;
 
 /**
 类名：UserService.java
@@ -12,8 +14,11 @@ description：处理用户的业务需求
 public interface UserService {
 
 	//判断用户名和密码
-	public void findUserByUsernamePassword(UserCustom userCustom)throws Exception;
+	public Integer findUserByUsernamePassword(UserLogin userLogin)throws Exception;
 //通过用户名查询用户
-	public void findUserByUsername(UserCustom userCustom)throws Exception;
+	public Integer findUserByUsername(UserLogin userLogin)throws Exception;
+	
+	//注册插入用户数据
+	public Integer insertUserAndUserLogin(UserVo userVo)throws Exception;
 }
 

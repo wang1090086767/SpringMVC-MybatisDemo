@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,11 +11,22 @@
 <h2>用户登录</h2>
 <br>
 <form action="${pageContext.request.contextPath}/login.action " method="post">
-username:<input type="text" name="username"/><br>
+username:<input type="text" name="login_name"/><br>
 <br>
-password:<input type="password" name ="password"/><br>
+password:<input type="password" name ="login_password"/><br>
 <input type="submit" value="登陆">
 </form>
+<a href="${pageContext.request.contextPath}/register.action">注册</a>
+<font color="red">
+<c:if test="${login_err!=null}">
+错误信息：${login_err}
+</c:if>
+</font>
+<font color="green">
+<c:if test="${register_success!=null}">
+${register_success}
+</c:if>
+</font>
 
 </body>
 </html>
